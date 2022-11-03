@@ -34,12 +34,9 @@ public class ProductController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<ResponseMessage> saveProduct(@RequestParam("title") String title,
+    public ResponseEntity<ResponseMessage> saveProduct(@RequestParam("title") String name,
                                                        @RequestParam("price") Double price) {
-        ProductDto productDto = new ProductDto();
-        productDto.setName(title);
-        productDto.setPrice(price);
-        service.saveProduct(productDto);
-        return ResponseEntity.ok().body(new ResponseMessage("Товар " + title + "успешно сохранен"));
+        service.saveProduct(name, price);
+        return ResponseEntity.ok().body(new ResponseMessage("Товар " + name + "успешно сохранен"));
     }
 }

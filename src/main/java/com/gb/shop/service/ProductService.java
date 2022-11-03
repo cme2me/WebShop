@@ -1,6 +1,7 @@
 package com.gb.shop.service;
 
 import com.gb.shop.dao.ProductRepository;
+import com.gb.shop.dao.entity.Product;
 import com.gb.shop.dto.ProductDto;
 import com.gb.shop.mapper.ProductMapper;
 import org.springframework.stereotype.Service;
@@ -25,9 +26,12 @@ public class ProductService {
         repository.deleteById(id);
     }
 
-    public void saveProduct(ProductDto productDto) {
-
-        repository.save(mapper.toProductEntity(productDto));
+    public void saveProduct(String name, Double price) {
+        Product product = new Product();
+        product.setId(UUID.randomUUID());
+        product.setPrice(price);
+        product.setName(name);
+        repository.save(product);
     }
 
     public List<ProductDto> findAll() {
