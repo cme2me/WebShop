@@ -34,9 +34,17 @@ public class ProductController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<ResponseMessage> saveProduct(@RequestParam("title") String name,
+    public ResponseEntity<ResponseMessage> saveProduct(@RequestParam("name") String name,
                                                        @RequestParam("price") Double price) {
         service.saveProduct(name, price);
+        return ResponseEntity.ok().body(new ResponseMessage("Товар " + name + "успешно сохранен"));
+    }
+
+    @PatchMapping("/update")
+    public ResponseEntity<ResponseMessage> updateProduct(@RequestParam("name") String name,
+                                                         @RequestParam("price") Double price,
+                                                         @RequestParam("id") UUID id) {
+        service.updateProduct(id,name, price);
         return ResponseEntity.ok().body(new ResponseMessage("Товар " + name + "успешно сохранен"));
     }
 }
