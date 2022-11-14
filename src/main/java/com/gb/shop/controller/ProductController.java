@@ -52,7 +52,7 @@ public class ProductController {
     public ResponseEntity<ResponseMessage> updateProduct(@RequestParam("name") String name,
                                                          @RequestParam("price") Double price,
                                                          @RequestParam("id") UUID id) {
-        service.updateProduct(id,name, price);
+        service.updateProduct(id, name, price);
         return ResponseEntity.ok().body(new ResponseMessage("Товар " + name + "успешно сохранен"));
     }
 }
