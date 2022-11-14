@@ -5,6 +5,7 @@ import com.gb.shop.dto.ResponseMessage;
 import com.gb.shop.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -47,6 +48,7 @@ public class ProductController {
 
     @Operation(summary = "Обновление данных о продукте", description = "Необходимо указать id, который ходим обновить, новые названия и цены продукта")
     @PatchMapping("/update")
+    @Transactional
     public ResponseEntity<ResponseMessage> updateProduct(@RequestParam("name") String name,
                                                          @RequestParam("price") Double price,
                                                          @RequestParam("id") UUID id) {
