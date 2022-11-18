@@ -9,7 +9,7 @@ import java.util.UUID;
 
 @Configuration
 public class BasketConfig {
-    @Bean(value = "singleton")
+    @Bean("singleton")
     public Basket createBasket() {
         return new Basket(UUID.randomUUID(), 10, new ArrayList<>());
     }
