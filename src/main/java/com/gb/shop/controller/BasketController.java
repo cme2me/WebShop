@@ -31,7 +31,7 @@ public class BasketController {
     }
 
     //TODO добавить поиск корзин по ID
-    @Operation(summary = "Получение списка продуктов из корзины", description = "")
+    @Operation(summary = "Получение списка продуктов из корзины")
     @GetMapping("/get/basket/products")
     public ResponseEntity<List<? super BaseProduct>> getBasket() {
         return ResponseEntity.ok().body(basketService.getBasket().getProducts());
