@@ -5,12 +5,14 @@ import com.gb.shop.dto.ResponseMessage;
 import com.gb.shop.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
 
+@Controller
 public class ProductController {
     private final ProductService service;
 
