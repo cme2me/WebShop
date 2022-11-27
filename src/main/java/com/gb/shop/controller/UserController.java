@@ -25,10 +25,9 @@ public class UserController {
     }
     @PostMapping("/register")
     @Secured("USER")
-    public void registerUser(@RequestParam("login") String login,
-                             @RequestParam("password") String password) {
+    public void registerUser(@RequestParam("login") String login) {
         roleService.createRole(RoleType.USER);
-        userService.createUser(login, password);
+        userService.loadUserByUsername(login);
     }
     @GetMapping("/get/all/users")
     @Secured("ADMIN")
