@@ -12,5 +12,5 @@ import lombok.Setter;
 public class StatDTO {
     private Long basketService;
     private Long productService;
-
+    private Long userService;
 }
