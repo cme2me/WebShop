@@ -1,16 +1,18 @@
-package com.gb.shop.validator;
+package com.example.api.validator;
 
-import com.gb.shop.dao.entity.Product;
-import com.gb.shop.dto.ProductDto;
-import com.gb.shop.exceptions.ValidateException;
+import com.example.api.dao.entity.Product;
+import com.example.api.dto.ProductDto;
+import com.example.api.exception.ValidateException;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
 @Component
 public class ProductValidator {
     private final List<String> errorList = new ArrayList<>();
+
     public void validate(ProductDto dto) {
         if (Objects.isNull(dto.getName())) {
             errorList.add("Product name not presented");
@@ -22,6 +24,7 @@ public class ProductValidator {
             throw new ValidateException(errorList);
         }
     }
+
     public void validate(Product product) {
         if (Objects.isNull(product.getName())) {
             errorList.add("Product name not presented");

@@ -1,7 +1,7 @@
-package com.gb.shop.mapper;
+package com.example.api.mapper;
 
-import com.gb.shop.dao.entity.Product;
-import com.gb.shop.dto.ProductDto;
+import com.example.api.dao.entity.Product;
+import com.example.api.dto.ProductDto;
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
 

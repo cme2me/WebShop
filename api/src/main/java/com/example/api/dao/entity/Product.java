@@ -1,9 +1,8 @@
-package com.gb.shop.dao.entity;
+package com.example.api.dao.entity;
 
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Objects;
 import java.util.UUID;
 
 @Entity

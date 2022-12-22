@@ -1,4 +1,4 @@
-package com.gb.shop.dao.entity;
+package com.example.api.dao.entity;
 
 public abstract class BaseProduct {
 }
