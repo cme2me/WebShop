@@ -1,4 +1,4 @@
-package com.gb.shop.exceptions;
+package com.example.api.exception;
 
 import java.util.List;
 

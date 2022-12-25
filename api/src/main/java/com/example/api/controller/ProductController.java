@@ -1,9 +1,11 @@
-package com.gb.shop.controller;
+package com.example.api.controller;
 
-import com.gb.shop.dto.ProductDto;
-import com.gb.shop.dto.ResponseMessage;
-import com.gb.shop.service.ProductService;
+import com.example.api.dto.ProductDto;
+import com.example.api.dto.ResponseMessage;
+import com.example.api.request.RequestParamsForFilterByNameAndPrice;
+import com.example.api.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,12 +15,10 @@ import java.util.List;
 import java.util.UUID;
 
 @Controller
+@RequiredArgsConstructor
+@CrossOrigin("*")
 public class ProductController {
     private final ProductService service;
-
-    public ProductController(ProductService service) {
-        this.service = service;
-    }
 
     @Operation(summary = "Возврат продукта по ID", description = "Необходимо указать ID продукта")
     @GetMapping("/show/{id}")
@@ -56,5 +56,12 @@ public class ProductController {
                                                          @RequestParam("id") UUID id) {
         service.updateProduct(id, name, price);
         return ResponseEntity.ok().body(new ResponseMessage("Товар " + name + "успешно сохранен"));
+    }
+    @Operation(summary = "Фильтрация продуктов")
+    @GetMapping("/product/filter")
+    public ResponseEntity<List<ProductDto>> filterProductsByNameAndPrice(@RequestParam(value = "name", required = false) String name,
+                                                                        @RequestParam(value = "fromPrice", required = false) Double fromPrice,
+                                                                        @RequestParam(value = "toPrice", required = false) Double toPrice) {
+        return ResponseEntity.ok().body(service.filterProductByNameAndPrice(new RequestParamsForFilterByNameAndPrice(name, fromPrice, toPrice)));
     }
 }

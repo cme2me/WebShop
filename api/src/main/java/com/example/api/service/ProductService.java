@@ -1,11 +1,14 @@
-package com.gb.shop.service;
+package com.example.api.service;
 
-import com.gb.shop.dao.ProductRepository;
-import com.gb.shop.dao.entity.Product;
-import com.gb.shop.dto.ProductDto;
-import com.gb.shop.exceptions.ProductException;
-import com.gb.shop.mapper.ProductMapper;
-import com.gb.shop.validator.ProductValidator;
+import com.example.api.dao.ProductRepository;
+import com.example.api.dao.entity.Product;
+import com.example.api.dao.entity.ProductSpecification;
+import com.example.api.dto.ProductDto;
+import com.example.api.exception.ProductException;
+import com.example.api.mapper.ProductMapper;
+import com.example.api.request.RequestParamsForFilterByNameAndPrice;
+import com.example.api.validator.ProductValidator;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,12 +20,14 @@ public class ProductService {
     private final ProductRepository repository;
     private final ProductMapper mapper;
     private final ProductValidator validator;
+    private final ProductSpecification specification;
 
 
-    public ProductService(ProductRepository repository, ProductMapper mapper, ProductValidator validator) {
+    public ProductService(ProductRepository repository, ProductMapper mapper, ProductValidator validator, ProductSpecification specification) {
         this.repository = repository;
         this.mapper = mapper;
         this.validator = validator;
+        this.specification = specification;
     }
 
     public ProductDto findById(UUID id) {
@@ -57,5 +62,10 @@ public class ProductService {
         validator.validate(product);
 
         repository.save(product);
+    }
+
+    public List<ProductDto> filterProductByNameAndPrice(RequestParamsForFilterByNameAndPrice requestParams) {
+        List<Product> productList = repository.findAll(specification.findByNameAndPrice(requestParams.getName(), requestParams.getFromPrice(), requestParams.getToPrice()));
+        return mapper.toProductDtoList(productList);
     }
 }
