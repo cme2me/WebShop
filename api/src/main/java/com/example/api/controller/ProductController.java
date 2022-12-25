@@ -2,6 +2,7 @@ package com.example.api.controller;
 
 import com.example.api.dto.ProductDto;
 import com.example.api.dto.ResponseMessage;
+import com.example.api.request.RequestParamsForFilterByNameAndPrice;
 import com.example.api.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +16,7 @@ import java.util.UUID;
 
 @Controller
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class ProductController {
     private final ProductService service;
 
@@ -54,5 +56,12 @@ public class ProductController {
                                                          @RequestParam("id") UUID id) {
         service.updateProduct(id, name, price);
         return ResponseEntity.ok().body(new ResponseMessage("Товар " + name + "успешно сохранен"));
+    }
+    @Operation(summary = "Фильтрация продуктов")
+    @GetMapping("/product/filter")
+    public ResponseEntity<List<ProductDto>> filterProductsByNameAndPrice(@RequestParam(value = "name", required = false) String name,
+                                                                        @RequestParam(value = "fromPrice", required = false) Double fromPrice,
+                                                                        @RequestParam(value = "toPrice", required = false) Double toPrice) {
+        return ResponseEntity.ok().body(service.filterProductByNameAndPrice(new RequestParamsForFilterByNameAndPrice(name, fromPrice, toPrice)));
     }
 }
