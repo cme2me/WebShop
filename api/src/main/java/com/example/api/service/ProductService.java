@@ -1,11 +1,12 @@
-package com.gb.shop.service;
+package com.example.api.service;
 
-import com.gb.shop.dao.ProductRepository;
-import com.gb.shop.dao.entity.Product;
-import com.gb.shop.dto.ProductDto;
-import com.gb.shop.exceptions.ProductException;
-import com.gb.shop.mapper.ProductMapper;
-import com.gb.shop.validator.ProductValidator;
+import com.example.api.dao.ProductRepository;
+import com.example.api.dao.entity.Product;
+import com.example.api.dto.ProductDto;
+import com.example.api.exception.ProductException;
+import com.example.api.mapper.ProductMapper;
+import com.example.api.validator.ProductValidator;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;

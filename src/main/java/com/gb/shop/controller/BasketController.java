@@ -1,6 +1,6 @@
 package com.gb.shop.controller;
 
-import com.gb.shop.dao.entity.BaseProduct;
+import com.example.api.dao.entity.BaseProduct;
 import com.gb.shop.dto.ResponseMessage;
 import com.gb.shop.service.BasketService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -31,7 +31,7 @@ public class BasketController {
     }
 
     //TODO добавить поиск корзин по ID
-    @Operation(summary = "Получение списка продуктов из корзины", description = "")
+    @Operation(summary = "Получение списка продуктов из корзины")
     @GetMapping("/get/basket/products")
     public ResponseEntity<List<? super BaseProduct>> getBasket() {
         return ResponseEntity.ok().body(basketService.getBasket().getProducts());

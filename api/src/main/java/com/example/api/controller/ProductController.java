@@ -1,22 +1,22 @@
-package com.gb.shop.controller;
+package com.example.api.controller;
 
-import com.gb.shop.dto.ProductDto;
-import com.gb.shop.dto.ResponseMessage;
-import com.gb.shop.service.ProductService;
+import com.example.api.dto.ProductDto;
+import com.example.api.dto.ResponseMessage;
+import com.example.api.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
 
+@Controller
+@RequiredArgsConstructor
 public class ProductController {
     private final ProductService service;
-
-    public ProductController(ProductService service) {
-        this.service = service;
-    }
 
     @Operation(summary = "Возврат продукта по ID", description = "Необходимо указать ID продукта")
     @GetMapping("/show/{id}")
